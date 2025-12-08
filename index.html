@@ -1,1 +1,192 @@
-<h1>Aun no desesperados<h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso con Contraseña</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            min-width: 350px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .success-message {
+            color: #27ae60;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video de fondo - Cambia el src por tu video -->
+    <video id="bg-video" autoplay muted loop playsinline>
+        <source src="tu-video-aqui.mp4" type="video/mp4">
+        Tu navegador no soporta el elemento de video.
+    </video>
+
+    <div class="overlay"></div>
+
+    <div class="container">
+        <div class="login-box">
+            <h1>🔒 Acceso Seguro</h1>
+            <div class="input-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="Ingresa la contraseña">
+            </div>
+            <button onclick="verificarContrasena()">Guardar</button>
+            <p class="error-message" id="error">❌ Contraseña incorrecta</p>
+            <p class="success-message" id="success">✅ Acceso correcto. Redirigiendo...</p>
+        </div>
+    </div>
+
+    <script>
+        function verificarContrasena() {
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error');
+            const successMsg = document.getElementById('success');
+            
+            // Ocultar mensajes previos
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+
+            if (password === 'AlyGrinch') {
+                successMsg.style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = 'alyNavidad.html';
+                }, 1000);
+            } else if (password === 'BatDaniGrinch') {
+                successMsg.style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = 'pagina2.html';
+                }, 1000);
+            } else if (password === 'ParienteGrinch') {
+                successMsg.style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = 'pagina3.html';
+                }, 1000);
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        // Permitir enviar con Enter
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verificarContrasena();
+            }
+        });
+    </script>
+</body>
+</html>
