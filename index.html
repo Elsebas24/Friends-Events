@@ -178,6 +178,7 @@
                 </span>
             </div>
             <button onclick="verificarContrasena()">Guardar</button>
+            <p class="error-message" id="empty">⌨️ Ingrese una contraseña</p>
             <p class="error-message" id="error">❌ Contraseña incorrecta</p>
             <p class="success-message" id="success">✅ Acceso correcto. Redirigiendo...</p>
         </div>
@@ -216,14 +217,18 @@
 
         function verificarContrasena() {
             const password = document.getElementById('password').value;
+            const emptyMsg = document.getElementById('empty');
             const errorMsg = document.getElementById('error');
             const successMsg = document.getElementById('success');
             
             // Ocultar mensajes previos
+            emptyMsg.style.display = 'none';            
             errorMsg.style.display = 'none';
             successMsg.style.display = 'none';
 
-            if (password === 'AlyGrinch') {
+            if (password === '' || password.trim() === ''){
+                emptyMsg.style.display = 'block';
+            } else if (password === 'AlyGrinch') {
                 successMsg.style.display = 'block';
                 setTimeout(() => {
                     window.location.href = 'alyNavidad.html';
